@@ -80,8 +80,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\SDLProjects\SDL_Space_Shooter_Game\include\SDL;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\SDLProjects\SDL_Space_Shooter_Game\lib\x64;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Projects\SDLProjects\SDL_Space_Shooter\include\SDL;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Projects\SDLProjects\SDL_Space_Shooter\lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -126,7 +126,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\SDLProjects\SDL_Space_Shooter_Game\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Projects\SDLProjects\SDL_Space_Shooter\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>

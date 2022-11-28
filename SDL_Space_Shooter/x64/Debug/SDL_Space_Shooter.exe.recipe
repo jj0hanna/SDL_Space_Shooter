@@ -2,7 +2,7 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
-      <FullPath>C:\SDLProjects\SDL_Space_Shooter_Game\x64\Debug\SDL_Space_Shooter.exe</FullPath>
+      <FullPath>C:\Projects\SDLProjects\SDL_Space_Shooter\x64\Debug\SDL_Space_Shooter.exe</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles />
