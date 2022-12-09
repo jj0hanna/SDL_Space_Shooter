@@ -45,3 +45,13 @@ using namespace std;
 //	rect.y = 32;
 //	rect.w = 32;
 //}
+
+Enemy::Enemy()
+{
+	position = new Position();
+	movement = new Movment();
+	body = new Body();
+
+	EnemyIndex = 0;
+	body->rect = { 1, 1, 50, 50 }; 
+}

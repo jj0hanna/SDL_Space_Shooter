@@ -5,27 +5,35 @@
 #include "SDL.h"
 #include "SDL_image.h"
 
+using namespace std;
 class EnemyPooling
 {
 public:
 	EnemyPooling();
 	~EnemyPooling();
 	
-	std::list<Enemy> FreeList;
-	std::list<Enemy> IsActiveList; // use list when the list gonna be hughe, otherwise vector
+	//list<Enemy> FreeList;
+	//list<Enemy> IsActiveList; // use list when the list gonna be hughe, otherwise vector
 
-	std::vector<Enemy> VIsActiveList; // vector better then list?
-	std::vector<Enemy> VFreeList;
-	std::vector<int> VIntList;
+	vector<Enemy*> VIsActiveList; // vector better then list?
+	vector<Enemy*> VFreeList; // stack allocarad, listaq av pointers
 
-	void CreateNewEnemy();
-	Enemy GetEnemies();
-	void ReturnEnemy(Enemy enemy); // not here?
+	vector<Body*> VBodyList;
+	vector<Position*> VPositionList; // // or vector<Position>* VPositionList; // heap allocerad lista av Positions
 
-	void RenderEnemy(Enemy& p_enemy);// dereffering here?
-	//void Update(float& delta);
+	int GetEnemies(Enemy** E, int amount);
+	void ReturnEnemy(Enemy* enemy);
+
+	void UpdateEnemies();
 	
 private:
-	float Max = 5;
+	void CreateNewEnemies();
+	float Max = 1000;
+	float Start = 2;
+	float CreateAmount = 100;
 	SDL_Renderer* renderer;
+
+	float currentDirection = 1;
+	float newDirectionUp = -1;
+	float newDirectionDown = 1;
 };

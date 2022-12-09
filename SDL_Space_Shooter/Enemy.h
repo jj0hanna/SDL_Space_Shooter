@@ -9,36 +9,37 @@
 //    void draw(struct Body* Body);
 // 
 //};
-//struct Position 
-//{
-//    float x, y;
-//};
-//struct Movment
-//{
-//    float speed;
-//    float direction;
-//};
-//struct Body
-//{
-//    SDL_Renderer* renderer;
-//   
-//	  float width;
-//    float hight;
-//    SDL_Rect rect;
-//    //uint32_t color;
-//};
+
+struct Position 
+{
+    float x, y;
+	
+};
+struct Movment
+{
+    float speed;
+    float direction;
+};
+struct Body
+{
+  
+	float width;
+    float hight;
+    SDL_FRect rect;
+    //uint32_t color;
+};
 
 
 struct Enemy
 {
-	float x = 0;
-	float y = 0;
-
-	float width;
-	float hight;
-
-	SDL_Rect rect;
 
 	bool IsActive = false;
+	
+	Position* position;
+	Movment* movement;
+	Body* body;
+
+	int EnemyIndex = 0;
+	Enemy();
 
 };

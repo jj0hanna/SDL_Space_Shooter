@@ -1,2 +1,4 @@
-﻿  Source.cpp
-  SDL_Space_Shooter.vcxproj -> C:\Projects\SDLProjects\SDL_Space_Shooter\x64\Debug\SDL_Space_Shooter.exe
+﻿  Game.cpp
+C:\SDLProjects\SDL_Space_Shooter_Game\SDL_Space_Shooter\Game.h(4,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\SDLProjects\SDL_Space_Shooter_Game\SDL_Space_Shooter\Game.cpp(88,30): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  SDL_Space_Shooter.vcxproj -> C:\SDLProjects\SDL_Space_Shooter_Game\x64\Debug\SDL_Space_Shooter.exe
