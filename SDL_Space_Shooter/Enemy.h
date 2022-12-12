@@ -26,11 +26,13 @@ struct Body
 	float width;
     float hight;
     SDL_FRect rect;
-    //uint32_t color;
+	Uint8 r = 255;
+	Uint8 g = 0;
+	Uint8 b = 0;
 };
 
 
-struct Enemy
+struct Enemy // if i put all the stucts inside this struct then i cant create my vectors with BODY in Enemypooling.h
 {
 
 	bool IsActive = false;

@@ -67,6 +67,7 @@ int EnemyPooling::GetEnemies(Enemy** E,int amount = 1) // this sould be called b
 		E[i] = VFreeList.back();
 		VIsActiveList.push_back(E[i]);
 		
+		
 		std::swap(VFreeList.back()->body, VBodyList[VIsActiveList.size()-1]);
 		E[i]->IsActive = true;
 		E[i]->EnemyIndex = VIsActiveList.size() - 1;
@@ -105,7 +106,7 @@ void EnemyPooling::UpdateEnemies()
 		if (currentDirection > 0 )
 		{
 			
-			std::cout << "Going down" << std::endl;
+			//std::cout << "Going down" << std::endl;
 			
 			VBodyList[i]->rect.y += newDirectionDown;
 			
@@ -117,7 +118,7 @@ void EnemyPooling::UpdateEnemies()
 		}
 		if (currentDirection < 0)
 		{
-			std::cout << "Going up" << std::endl;
+			//std::cout << "Going up" << std::endl;
 			if (VBodyList[i]->rect.y > 1.f)
 			{
 				VBodyList[i]->rect.y += newDirectionUp;

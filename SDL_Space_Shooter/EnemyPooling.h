@@ -18,6 +18,7 @@ public:
 	vector<Enemy*> VIsActiveList; // vector better then list?
 	vector<Enemy*> VFreeList; // stack allocarad, listaq av pointers
 
+	
 	vector<Body*> VBodyList;
 	vector<Position*> VPositionList; // // or vector<Position>* VPositionList; // heap allocerad lista av Positions
 

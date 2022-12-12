@@ -1,8 +1,10 @@
 #include "Game.h"
 #include "RenderWindow.h"
 #include "EnemyPooling.h"
+#include "Player.h"
 #include "SDL.h"
 #include <iostream>
+#include <type_traits>
 
 Game::Game()
 {
@@ -12,6 +14,7 @@ Game::Game()
 
 	enemyPooling = new EnemyPooling(); // create enemies from enemy pool script
 	
+	player = new Player();
 
 	gameIsRunning = false;
 	
@@ -47,14 +50,41 @@ Game& Game::getInstance()
 void Game::EventHandler()
 {
 	SDL_Event event;
+	int scancode;
+
 	while (SDL_PollEvent(&event))
 	{
 
-		if (event.type == SDL_QUIT) // use switxh
+		switch (event.type)
 		{
+		case SDL_QUIT:
 			gameIsRunning = false;
+			break;
+		case SDL_KEYDOWN:
+			std::cout << "SOME KEY PRESSED" << std::endl;
+			if (!player->Input(event))
+			{
+				std::cout << "Quit" << std::endl;
+				gameIsRunning = false;
+
+			}
+			break;
+		case SDL_KEYUP:
+			player->Input(event);
+			break;
+
+		case SDL_MOUSEMOTION:
+			player->MouseMovment(event);
+			break;
+		case SDL_MOUSEBUTTONDOWN:
+			player->MouseInput(event);
+			
+			break;
+
+		default:
+			break;
 		}
-	
+
 	}
 	
 }
@@ -62,7 +92,9 @@ void Game::EventHandler()
 void Game::Render()
 {
 	//std::cout << "Start of Game::Render()!\n";
-	gamewindow->render(&enemyPooling->VIsActiveList);
+	//gamewindow->render(&enemyPooling->VIsActiveList);
+	gamewindow->render3(&enemyPooling->VIsActiveList, *player);
+	
 }
 
 void Game::Update()

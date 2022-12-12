@@ -1,7 +1,8 @@
 #pragma once
 #include "Enemy.h"
 #include "EnemyPooling.h"
-#include "RenderWindow.h";
+#include "RenderWindow.h"
+#include "Player.h"
 
 extern Enemy enemy; // sould i do extern?
 
@@ -33,6 +34,7 @@ private:
 	SDL_Renderer* render;
 	EnemyPooling* enemyPooling;
 	RenderWindow* gamewindow;
+	Player* player;
 
 };
 
