@@ -2,9 +2,10 @@
 #include "Enemy.h"
 #include "EnemyPooling.h"
 #include "RenderWindow.h"
+#include "BulletPool.h"
 #include "Player.h"
 
-extern Enemy enemy; // sould i do extern?
+//extern Enemy enemy; // sould i do extern?
 
 class Game
 {
@@ -32,8 +33,9 @@ private:
 
 
 	SDL_Renderer* render;
-	EnemyPooling* enemyPooling;
+	EnemyPooling* enemyPool;
 	RenderWindow* gamewindow;
+	BulletPool* bulletpool;
 	Player* player;
 
 };

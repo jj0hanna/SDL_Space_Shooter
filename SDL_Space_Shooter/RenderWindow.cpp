@@ -5,7 +5,7 @@
 #include "Enemy.h"
 #include "Player.h"
 #include <vector>
-#include <type_traits>
+
 
 
 RenderWindow::RenderWindow(const char* title, int width, int hight)
@@ -51,7 +51,6 @@ void RenderWindow::render(vector<Enemy*>* Objects)
 		SDL_RenderFillRectF(renderer, &each->body->rect);
 	}
 
-
 	//SDL_RenderCopy(renderer,texture,NULL,NULL); // if i want to render a texture copy
 	SDL_RenderPresent(renderer); // use display() to show the renderer insted?
 	SDL_Delay(4);
@@ -63,10 +62,16 @@ void RenderWindow::render3(vector<Enemy*>* Objects, Player player)
 {
 	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 	SDL_RenderClear(renderer);
-	//your stuff to render would typically go here.
-	SDL_SetRenderDrawColor(renderer, player.body->r,player.body->g, player.body->b, 255);
+	
+	//Player
+	SDL_SetRenderDrawColor(renderer, player.body->r,player.body->g, player.body->b, SDL_ALPHA_OPAQUE);
 	SDL_RenderFillRectF(renderer, &player.body->rect);
 
+	//How to draw a triangle
+	//SDL_SetRenderDrawColor(renderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
+	//SDL_RenderGeometry(renderer, nullptr, player.verts.data(), player.verts.size(), nullptr,0);
+	
+	// Enemies
 	SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
 	for (Enemy* each : *Objects)
 	{

@@ -29,9 +29,10 @@ public:
 	
 private:
 	void CreateNewEnemies();
-	float Max = 1000;
-	float Start = 2;
-	float CreateAmount = 100;
+
+
+	float max = 1000;
+	float createAmount = 100;
 	SDL_Renderer* renderer;
 
 	float currentDirection = 1;

@@ -2,6 +2,7 @@
 #include "RenderWindow.h"
 #include "EnemyPooling.h"
 #include "Player.h"
+#include "BulletPool.h"
 #include "SDL.h"
 #include <iostream>
 #include <type_traits>
@@ -10,16 +11,11 @@ Game::Game()
 {
 	
 	gamewindow = new RenderWindow("Game", 1280, 720); // render the window from the create window scrip
-	
-
-	enemyPooling = new EnemyPooling(); // create enemies from enemy pool script
-	
+	enemyPool = new EnemyPooling(); // create enemies from enemy pool script
+	bulletpool = new BulletPool();
 	player = new Player();
 
 	gameIsRunning = false;
-	
-	
-	
 }
 
 Game::~Game(){}
@@ -93,13 +89,14 @@ void Game::Render()
 {
 	//std::cout << "Start of Game::Render()!\n";
 	//gamewindow->render(&enemyPooling->VIsActiveList);
-	gamewindow->render3(&enemyPooling->VIsActiveList, *player);
+	gamewindow->render3(&enemyPool->VIsActiveList, *player);
 	
 }
 
 void Game::Update()
 {
-	enemyPooling->UpdateEnemies();
+	enemyPool->UpdateEnemies();
+	player->PlayerMovment();
 }
 
 void Game::SpawnEnemies(int amount)
@@ -110,7 +107,7 @@ void Game::SpawnEnemies(int amount)
 
 	int amountEnemiesThatSpawned;
 	Enemy** E = new Enemy * [amount]; // create an array of enemies
-	amountEnemiesThatSpawned = enemyPooling->GetEnemies(E, amount);// create all enemies and give back the amount of enemies that spawned
+	amountEnemiesThatSpawned = enemyPool->GetEnemies(E, amount);// create all enemies and give back the amount of enemies that spawned
 	std::cout << "Before loop in spawn enemies, amountEnemiesThatSpawned:" << amountEnemiesThatSpawned << std::endl;
 
 	for (int i = 0; i < amountEnemiesThatSpawned; i++)
@@ -123,7 +120,7 @@ void Game::SpawnEnemies(int amount)
 	}
 	std::cout << "End of spawn enemies!\n"; 
 	std::cout << "End of spawn enemies, amountEnemiesThatSpawned:" << amountEnemiesThatSpawned << std::endl;
-	std::cout << "End of spawn enemies, ActiveList size:" << enemyPooling->VIsActiveList.size() << std::endl;
-	std::cout << "End of spawn enemies, VFreeList size:" << enemyPooling->VFreeList.size() << std::endl;
+	std::cout << "End of spawn enemies, ActiveList size:" << enemyPool->VIsActiveList.size() << std::endl;
+	std::cout << "End of spawn enemies, VFreeList size:" << enemyPool->VFreeList.size() << std::endl;
 	delete[] E; // remove to not leak
 }

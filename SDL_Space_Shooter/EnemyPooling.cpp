@@ -48,10 +48,10 @@ int EnemyPooling::GetEnemies(Enemy** E,int amount = 1) // this sould be called b
 		CreateNewEnemies(); // create one more enemy
 		
 	}
-	if (getAmount + VIsActiveList.size() > Max)
+	if (getAmount + VIsActiveList.size() > max)
 	{
 		
-		getAmount = Max - VIsActiveList.size(); //change realAmount to a number that dont reach the Max
+		getAmount = max - VIsActiveList.size(); //change realAmount to a number that dont reach the Max
 		
 		if (getAmount <= 0)  // if realAmount is 0 or less, dont return and dont add any, ERROR
 		{

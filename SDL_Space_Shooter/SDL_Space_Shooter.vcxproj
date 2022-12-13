@@ -147,6 +147,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BulletPool.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="EnemyPooling.cpp" />
     <ClCompile Include="Engine.cpp" />
@@ -156,6 +157,7 @@
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BulletPool.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemyPooling.h" />
     <ClInclude Include="Engine.h" />
