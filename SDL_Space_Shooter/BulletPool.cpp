@@ -7,26 +7,68 @@
 using namespace std;
 BulletPool::BulletPool()
 {
-	CreateBulletBodies();
-	cout << "Inside BulletPool() constructor. bulletBodies.size():" << bulletBodies.size() << std::endl;
+
+	for (int i = 0; i < CreateBulletAmount; i++)
+	{
+		CreateBulletBodies();
+	}
+	
+
+	cout << "BulletPool() constructor. FreeBulletsList.size():" << FreeBulletsList.size() << std::endl;
+	//cout << "BulletPool() constructor. IsActiveBulletsList.size():" << IsActiveBulletsList.size() << std::endl;
+	//GetBullet();
+	
+	
+
 }
 
 void BulletPool::CreateBulletBodies()
 {
-	SDL_Rect* rect = new SDL_Rect;
+	SDL_FRect* rect = new SDL_FRect;
 	rect->h = 50.f;
 	rect->w = 50.f;
-	for (int i = 0; i < CreateBulletAmount; i++)
-	{
-		bulletBodies.push_back(new SDL_FRect());
-	}
+	//rect->x = rand() % 600;
+	//rect->y = rand() % 600;
+	//for (int i = 0; i < CreateBulletAmount; i++)
+	//{
+		FreeBulletsList.push_back(rect);
+	//}
+	//cout << "CreateBulletBodies(). FreeBulletsList.size():" << FreeBulletsList.size() << std::endl;
 	
 }
 
 void BulletPool::GetBullet()
 {
- 
-	
+	if (FreeBulletsList.size() < 1)
+	{
+		for (int i = 0; i < CreateBulletAmount; i++)
+		{
+			CreateBulletBodies();
+		}
+		
+	}
+
+	SDL_FRect* bulletFRect = new SDL_FRect;
+	bulletFRect = FreeBulletsList.back();
+	IsActiveBulletsList.push_back(bulletFRect);
+
+	FreeBulletsList.pop_back();
+
+	cout << "After get bullet GetBullet(). FreeBulletsList.size():" << FreeBulletsList.size() << std::endl;
+	cout << "After get bullet GetBullet(). IsActiveBulletsList.size():" << IsActiveBulletsList.size() << std::endl;
+
+}
+
+void BulletPool::UpdateBullets()
+{
+	if (IsActiveBulletsList.size() > 0 )
+	{
+		for (int i = 0; i < IsActiveBulletsList.size(); i++)
+		{
+			IsActiveBulletsList[i]->y -= 2.f;
+			//IsActiveBulletsList[i]->x += 2.f;
+		}
+	}
 }
 
 void BulletPool::ReturnBullet()

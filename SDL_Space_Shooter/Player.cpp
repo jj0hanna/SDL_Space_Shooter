@@ -1,6 +1,8 @@
 #include "Player.h"
 #include "SDL.h"
 #include "SDL_image.h"
+#include "BulletPool.h"
+#include "Game.h"
 #include <iostream>
 
 bool Player::Input(SDL_Event event)
@@ -35,7 +37,6 @@ bool Player::Input(SDL_Event event)
 			std::cout << "S KEY PRESSED" << std::endl;
 			this->movement->back = true;
 		}
-		
 		
 		if (scancode == SDL_SCANCODE_ESCAPE)
 		{
@@ -99,7 +100,12 @@ void Player::MouseInput(SDL_Event event)
 	
 		std::cout << "LEFT MOUSE HAS BEEN KLICKED" << std::endl;
 		std::cout << "Shoot" << std::endl;
+		shooting = true;
 	}
+	
+	
+	//shooting = false;
+	
 	// fix so we return the cordinates on where we klicked
 }
 

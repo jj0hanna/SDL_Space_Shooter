@@ -1,4 +1,2 @@
 ﻿  BulletPool.cpp
-C:\SDLProjects\SDL_Space_Shooter_Game\SDL_Space_Shooter\BulletPool.cpp(17,12): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\SDLProjects\SDL_Space_Shooter_Game\SDL_Space_Shooter\BulletPool.cpp(18,12): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-  SDL_Space_Shooter.vcxproj -> C:\SDLProjects\SDL_Space_Shooter_Game\x64\Debug\SDL_Space_Shooter.exe
+  SDL_Space_Shooter.vcxproj -> C:\Projects\SDLProjects\SDL_Space_Shooter\x64\Debug\SDL_Space_Shooter.exe

@@ -26,6 +26,7 @@ private:
 	void Render();
 	void Update();
 	void SpawnEnemies(int amount);
+	void SpawnBullet();
 
 	bool gameIsRunning;
 	int windowHight;

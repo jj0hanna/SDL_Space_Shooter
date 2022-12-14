@@ -58,7 +58,7 @@ void RenderWindow::render(vector<Enemy*>* Objects)
 
 }
 
-void RenderWindow::render3(vector<Enemy*>* Objects, Player player)
+void RenderWindow::render3(vector<Enemy*>* Objects, vector<SDL_FRect*>* BulletRects, Player player)
 {
 	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 	SDL_RenderClear(renderer);
@@ -79,10 +79,29 @@ void RenderWindow::render3(vector<Enemy*>* Objects, Player player)
 		SDL_RenderFillRectF(renderer, &each->body->rect);
 	}
 
+	// bullets
+	SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255);
+	for (SDL_FRect* each : *BulletRects)
+	{
+		//std::cout << "printing enemy!\n";
+		SDL_RenderFillRectF(renderer, each);
+	}
 	
 	//SDL_RenderCopy(renderer,texture,NULL,NULL); // if i want to render a texture copy
 	SDL_RenderPresent(renderer); // use display() to show the renderer insted?
 	SDL_Delay(4);
+}
+
+void RenderWindow::renderBullets(vector<SDL_FRect*>* BulletRects)
+{
+	SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255);
+	for (SDL_FRect* each : *BulletRects)
+	{
+		//std::cout << "printing enemy!\n";
+		SDL_RenderFillRectF(renderer, each);
+	}
+
+	SDL_RenderPresent(renderer);
 }
 
 void RenderWindow::cleanUp()

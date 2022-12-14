@@ -10,17 +10,22 @@ class BulletPool
 public:
 	BulletPool();
 
-	
+	void GetBullet();
+	void UpdateBullets();
+	vector<SDL_FRect*> IsActiveBulletsList;
+	vector<SDL_FRect*> FreeBulletsList;
+
+
 
 private:
 
-	vector<SDL_FRect*> bulletBodies;
 	
-	int CreateBulletAmount = 4;
+	
+	int CreateBulletAmount = 100;
 	//bool Active = false;
 
 	void CreateBulletBodies();
-	void GetBullet();
+	
 	void ReturnBullet();
 
 };

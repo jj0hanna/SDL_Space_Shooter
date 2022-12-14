@@ -73,8 +73,16 @@ void Game::EventHandler()
 			player->MouseMovment(event);
 			break;
 		case SDL_MOUSEBUTTONDOWN:
+			//
 			player->MouseInput(event);
-			
+			if (player->shooting)
+			{
+				SpawnBullet();
+				std::cout << "In game: Shooting is true" << std::endl;
+			}
+			break;
+		case SDL_MOUSEBUTTONUP:
+			player->shooting = false;
 			break;
 
 		default:
@@ -87,14 +95,22 @@ void Game::EventHandler()
 
 void Game::Render()
 {
+	
 	//std::cout << "Start of Game::Render()!\n";
 	//gamewindow->render(&enemyPooling->VIsActiveList);
-	gamewindow->render3(&enemyPool->VIsActiveList, *player);
+	gamewindow->render3(&enemyPool->VIsActiveList, &bulletpool->IsActiveBulletsList ,*player);
+	//gamewindow->renderBullets(&bulletpool->IsActiveBulletsList);
+	//if (player->shooting)
+	//{
+		//gamewindow->renderBullets(*bulletpool->GetBullet());
+		//std::cout << "render bullet cause player is shooting:" << std::endl;
+	//}
 	
 }
 
 void Game::Update()
 {
+	bulletpool->UpdateBullets();
 	enemyPool->UpdateEnemies();
 	player->PlayerMovment();
 }
@@ -123,4 +139,13 @@ void Game::SpawnEnemies(int amount)
 	std::cout << "End of spawn enemies, ActiveList size:" << enemyPool->VIsActiveList.size() << std::endl;
 	std::cout << "End of spawn enemies, VFreeList size:" << enemyPool->VFreeList.size() << std::endl;
 	delete[] E; // remove to not leak
+}
+
+void Game::SpawnBullet()
+{
+	bulletpool->GetBullet();
+	auto b = bulletpool->IsActiveBulletsList.back();
+	b->x = player->body->rect.x;
+	b->y = player->body->rect.y;
+
 }
