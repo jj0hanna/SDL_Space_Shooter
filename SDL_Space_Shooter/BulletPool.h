@@ -12,20 +12,13 @@ public:
 
 	void GetBullet();
 	void UpdateBullets();
+	void ReturnBullet(SDL_FRect* bulletRect, int index);
 	vector<SDL_FRect*> IsActiveBulletsList;
 	vector<SDL_FRect*> FreeBulletsList;
-
-
-
 private:
 
 	
 	
 	int CreateBulletAmount = 100;
-	//bool Active = false;
-
 	void CreateBulletBodies();
-	
-	void ReturnBullet();
-
 };

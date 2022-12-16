@@ -8,6 +8,7 @@
 EnemyPooling::EnemyPooling()
 {
 	CreateNewEnemies();
+	std::cout << "Enemies created in constructor" << VFreeList.size() << std::endl;
 	srand(time(NULL));
 	//VPositionList = new vector<Position>(); // heap
 	
@@ -18,35 +19,20 @@ EnemyPooling::~EnemyPooling(){}
 
 void EnemyPooling::CreateNewEnemies()
 {
-	std::cout << "CreateNewEnemy()\n";
-	std::cout << "Inside CreateNewEnemies before loop. VFreeList.size():" << VFreeList.size() << std::endl;
+	for (int i = 0; i < createAmount; i++)
+	{
+		VFreeList.push_back(new Enemy()); // stack?
 	
-		//for (int i = 0; i < CreateAmount; i++)
-		//{
-			VFreeList.push_back(new Enemy());
-			VBodyList.push_back(VFreeList.back()->body);
-			//VPositionList.push_back(new Position()); // do i have to remove from list?
-			//VFreeList.back()->body = VBodyList.back();
-			//VPositionList->push_back(Position());
-
-		
-			std::cout << "Inside CreateNewEnemies() VFreeList.size():" << VFreeList.size() << std::endl;
-		
-		//}
-	
-	
+		//VPositionList->push_back(Position());// heap
+	}
 }
 	
-int EnemyPooling::GetEnemies(Enemy** E,int amount = 1) // this sould be called before the game starts. In source on the top? or should this be called in the contructor and the constructor get called in source?
+int EnemyPooling::GetEnemies(Enemy** E, int amount = 1) // this sould be called before the game starts. In source on the top? or should this be called in the contructor and the constructor get called in source?
 {
 	int getAmount = amount;
-	int maxAmountImAllowedToCreate = 100;
-	int createAmount = 2;
 	while (VFreeList.size() < getAmount) // create all the enemies i wanted, but not more then im allowed
 	{
-		
 		CreateNewEnemies(); // create one more enemy
-		
 	}
 	if (getAmount + VIsActiveList.size() > max)
 	{
@@ -63,38 +49,38 @@ int EnemyPooling::GetEnemies(Enemy** E,int amount = 1) // this sould be called b
 	}
 	for (int i = 0; i < getAmount; i++)
 	{
-		//Add enemies to active list realAmount times
+		//Add enemies to activeList getAmount times
+		//Add those bodies to the bodyList getAmount times
 		E[i] = VFreeList.back();
 		VIsActiveList.push_back(E[i]);
+		VBodyList.push_back(E[i]->body);
 		
 		
-		std::swap(VFreeList.back()->body, VBodyList[VIsActiveList.size()-1]);
 		E[i]->IsActive = true;
-		E[i]->EnemyIndex = VIsActiveList.size() - 1;
-		VFreeList.pop_back();
-
-		//std::cout << "VFreeList.back()->body:" << VFreeList.back()->body << std::endl;
-		//std::cout << "VBodyList[IsActiveList.size()-1]" << VIsActiveList.size() << std::endl;
+		E[i]->EnemyIndex = VIsActiveList.size() - 1; // give the enemy the right index
+		VFreeList.pop_back(); // remove last enemy from the FreeList
 	}
 	std::cout << "Inside GetEnemies() ActiveList size:" << VIsActiveList.size() << std::endl;
-	return getAmount;
+	return getAmount; // return how many enemies we added to the ActiveList
 }
 
 void EnemyPooling::ReturnEnemy(Enemy* enemy)
 {
+	VIsActiveList.back()->EnemyIndex = enemy->EnemyIndex; // The enemy in the back of the ActiveList will get the enemiy that got killeds index
+	std::swap(VIsActiveList[enemy->EnemyIndex], VIsActiveList.back()); // we then swap places with those two so the enemy that died is the last enemy in the list
+	std::swap(VBodyList[enemy->EnemyIndex], VBodyList.back()); // we also swap the bodies so they have the right body 
+	
 
-	VIsActiveList.back()->EnemyIndex = enemy->EnemyIndex;
-	std::swap(VIsActiveList[enemy->EnemyIndex], VIsActiveList.back());
-	//std::swap(VPositionList[enemy->EnemyIndex], VPositionList.back());
-	std::swap(VBodyList[enemy->EnemyIndex], VBodyList.back());
-	//VIsActiveList[enemy->EnemyIndex]->EnemyIndex = enemy->EnemyIndex;
-
-	VIsActiveList.pop_back();
+	VIsActiveList.pop_back(); // remove the last enemy in the activelist(the enemy that died)
+	VBodyList.pop_back(); // and remove the body
 
 	enemy->IsActive = false;
-	//call enemy->ResetValues();
-	VFreeList.push_back(enemy);
-	
+	enemy->EnemyIndex = 0;
+	VFreeList.push_back(enemy); // add the enemy that died to the FreeList
+
+	std::cout << "VIsActiveList size:" << VIsActiveList.size() << std::endl;
+	std::cout << "VBodyList size:" << VBodyList.size() << std::endl;
+	std::cout << "VFreeList size:" << VFreeList.size() << std::endl;
 }
 
 void EnemyPooling::UpdateEnemies()

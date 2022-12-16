@@ -31,32 +31,28 @@ RenderWindow::RenderWindow(const char* title, int width, int hight)
 		if (renderer)
 		{
 			SDL_SetRenderDrawColor(renderer, 25, 121, 121, 255);
-			//std::cout << "Renderer created!\n";
-			//SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
-			//isRunning = true;
 		}
 	}
 	
 }
 
-void RenderWindow::render(vector<Enemy*>* Objects)
-{
-	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-	SDL_RenderClear(renderer);
-	//your stuff to render would typically go here.
-	SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
-	for (Enemy* each : *Objects)
-	{
-		//std::cout << "printing enemy!\n";
-		SDL_RenderFillRectF(renderer, &each->body->rect);
-	}
-
-	//SDL_RenderCopy(renderer,texture,NULL,NULL); // if i want to render a texture copy
-	SDL_RenderPresent(renderer); // use display() to show the renderer insted?
-	SDL_Delay(4);
-
-
-}
+//void RenderWindow::render(vector<Enemy*>* Objects)
+//{
+//	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+//	SDL_RenderClear(renderer);
+//	
+//	SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
+//	for (Enemy* each : *Objects)
+//	{
+//		SDL_RenderFillRectF(renderer, &each->body->rect);
+//	}
+//
+//	//SDL_RenderCopy(renderer,texture,NULL,NULL); // if i want to render a texture copy
+//	SDL_RenderPresent(renderer); // use display() to show the renderer insted?
+//	SDL_Delay(4);
+//
+//
+//}
 
 void RenderWindow::render3(vector<Enemy*>* Objects, vector<SDL_FRect*>* BulletRects, Player player)
 {
@@ -66,7 +62,7 @@ void RenderWindow::render3(vector<Enemy*>* Objects, vector<SDL_FRect*>* BulletRe
 	//Player
 	SDL_SetRenderDrawColor(renderer, player.body->r,player.body->g, player.body->b, SDL_ALPHA_OPAQUE);
 	SDL_RenderFillRectF(renderer, &player.body->rect);
-
+	
 	//How to draw a triangle
 	//SDL_SetRenderDrawColor(renderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
 	//SDL_RenderGeometry(renderer, nullptr, player.verts.data(), player.verts.size(), nullptr,0);
@@ -75,33 +71,19 @@ void RenderWindow::render3(vector<Enemy*>* Objects, vector<SDL_FRect*>* BulletRe
 	SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
 	for (Enemy* each : *Objects)
 	{
-		//std::cout << "printing enemy!\n";
-		SDL_RenderFillRectF(renderer, &each->body->rect);
+		SDL_RenderFillRectF(renderer, &each->body->rect); // render enemies
 	}
 
 	// bullets
 	SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255);
 	for (SDL_FRect* each : *BulletRects)
 	{
-		//std::cout << "printing enemy!\n";
-		SDL_RenderFillRectF(renderer, each);
+		SDL_RenderFillRectF(renderer, each); //render bullets
 	}
 	
 	//SDL_RenderCopy(renderer,texture,NULL,NULL); // if i want to render a texture copy
-	SDL_RenderPresent(renderer); // use display() to show the renderer insted?
-	SDL_Delay(4);
-}
-
-void RenderWindow::renderBullets(vector<SDL_FRect*>* BulletRects)
-{
-	SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255);
-	for (SDL_FRect* each : *BulletRects)
-	{
-		//std::cout << "printing enemy!\n";
-		SDL_RenderFillRectF(renderer, each);
-	}
-
 	SDL_RenderPresent(renderer);
+	SDL_Delay(4);
 }
 
 void RenderWindow::cleanUp()
@@ -119,22 +101,3 @@ void RenderWindow::display()
 {
 	//SDL_RenderPresent(renderer);
 }
-
-//template<typename T>
-//void RenderWindow::render2(vector<T*>* Objects)
-//{
-//	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-//	SDL_RenderClear(renderer);
-//	SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
-//
-//	for (Enemy* each : *Objects)
-//	{
-//		//std::cout << "printing enemy!\n";
-//		SDL_RenderFillRectF(renderer, &each->body->rect);
-//	}
-//
-//
-//	//SDL_RenderCopy(renderer,texture,NULL,NULL); // if i want to render a texture copy
-//	SDL_RenderPresent(renderer); // use display() to show the renderer insted?
-//	SDL_Delay(4);
-//}

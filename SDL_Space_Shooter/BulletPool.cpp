@@ -13,33 +13,20 @@ BulletPool::BulletPool()
 		CreateBulletBodies();
 	}
 	
-
-	cout << "BulletPool() constructor. FreeBulletsList.size():" << FreeBulletsList.size() << std::endl;
-	//cout << "BulletPool() constructor. IsActiveBulletsList.size():" << IsActiveBulletsList.size() << std::endl;
-	//GetBullet();
-	
-	
-
 }
 
 void BulletPool::CreateBulletBodies()
 {
 	SDL_FRect* rect = new SDL_FRect;
-	rect->h = 50.f;
-	rect->w = 50.f;
-	//rect->x = rand() % 600;
-	//rect->y = rand() % 600;
-	//for (int i = 0; i < CreateBulletAmount; i++)
-	//{
-		FreeBulletsList.push_back(rect);
-	//}
-	//cout << "CreateBulletBodies(). FreeBulletsList.size():" << FreeBulletsList.size() << std::endl;
+	rect->h = 10.f;
+	rect->w = 10.f;
 	
+	FreeBulletsList.push_back(rect);
 }
 
 void BulletPool::GetBullet()
 {
-	if (FreeBulletsList.size() < 1)
+	if (FreeBulletsList.size() < 1) // if we dont have any bullets in the freeList create more
 	{
 		for (int i = 0; i < CreateBulletAmount; i++)
 		{
@@ -49,28 +36,40 @@ void BulletPool::GetBullet()
 	}
 
 	SDL_FRect* bulletFRect = new SDL_FRect;
-	bulletFRect = FreeBulletsList.back();
-	IsActiveBulletsList.push_back(bulletFRect);
+	bulletFRect = FreeBulletsList.back(); // bulletFRectis the last bullet in the freeList
+	IsActiveBulletsList.push_back(bulletFRect); // add bullet to the activelist
 
-	FreeBulletsList.pop_back();
+	FreeBulletsList.pop_back();  // remove bullet from the freelist
 
-	cout << "After get bullet GetBullet(). FreeBulletsList.size():" << FreeBulletsList.size() << std::endl;
-	cout << "After get bullet GetBullet(). IsActiveBulletsList.size():" << IsActiveBulletsList.size() << std::endl;
-
+	std::cout << "FreeBulletsList size: " << FreeBulletsList.size() << std::endl;
+	std::cout << "IsActiveBulletsList size: " << IsActiveBulletsList.size() << std::endl;
 }
 
-void BulletPool::UpdateBullets()
+void BulletPool::UpdateBullets( )
 {
+	SDL_FRect* B = new SDL_FRect;
+
 	if (IsActiveBulletsList.size() > 0 )
 	{
 		for (int i = 0; i < IsActiveBulletsList.size(); i++)
 		{
-			IsActiveBulletsList[i]->y -= 2.f;
-			//IsActiveBulletsList[i]->x += 2.f;
+			B = IsActiveBulletsList[i];
+			B->y -= 2.f; // bullet speed and direction
+			
+			if (B->y == 0)
+			{
+			 ReturnBullet(B, i);
+			 //delete B; when?
+			}
 		}
+		
 	}
+	
 }
 
-void BulletPool::ReturnBullet()
+void BulletPool::ReturnBullet(SDL_FRect* bulletRect, int index)
 {
+	FreeBulletsList.push_back(bulletRect); // take THAT bullet and add it to the freelist
+	std::swap(IsActiveBulletsList[index], IsActiveBulletsList.back()); // swap the THAT bullet that died with the bullet last in the isActiveList
+	IsActiveBulletsList.pop_back(); // Since we spawed so the bullet that died is last - remove last bullet 
 }

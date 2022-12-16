@@ -12,13 +12,10 @@ class RenderWindow
 {
 public:
 	RenderWindow(const char* title, int width, int hight);
-	void render(vector<Enemy*>* Objects);
+	//void render(vector<Enemy*>* Objects);
 
-	//template<typename T>
-	//void render2(vector<T*>* Objects);
 	void render3(vector<Enemy*>* Objects, vector<SDL_FRect*>* BulletRects, Player player);
-	void renderBullets(vector<SDL_FRect*>* BulletRects);
-
+	
 	void cleanUp();
 	void clear();
 	void display();

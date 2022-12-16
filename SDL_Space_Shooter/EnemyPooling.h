@@ -12,15 +12,12 @@ public:
 	EnemyPooling();
 	~EnemyPooling();
 	
-	//list<Enemy> FreeList;
-	//list<Enemy> IsActiveList; // use list when the list gonna be hughe, otherwise vector
-
 	vector<Enemy*> VIsActiveList; // vector better then list?
 	vector<Enemy*> VFreeList; // stack allocarad, listaq av pointers
 
 	
 	vector<Body*> VBodyList;
-	vector<Position*> VPositionList; // // or vector<Position>* VPositionList; // heap allocerad lista av Positions
+	//vector<Position*> VPositionList; // // or vector<Position>* VPositionList; // heap allocerad lista av Positions
 
 	int GetEnemies(Enemy** E, int amount);
 	void ReturnEnemy(Enemy* enemy);
@@ -32,7 +29,7 @@ private:
 
 
 	float max = 1000;
-	float createAmount = 100;
+	float createAmount = 10;
 	SDL_Renderer* renderer;
 
 	float currentDirection = 1;
