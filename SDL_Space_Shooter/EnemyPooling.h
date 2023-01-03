@@ -22,17 +22,24 @@ public:
 	int GetEnemies(Enemy** E, int amount);
 	void ReturnEnemy(Enemy* enemy);
 
-	void UpdateEnemies();
+	void UpdateEnemies(float deltaTime);
+
+	void GetWindowSize(float height, float width);
 	
 private:
 	void CreateNewEnemies();
 
 
 	float max = 1000;
-	float createAmount = 10;
+	float createAmount = 100;
 	SDL_Renderer* renderer;
 
-	float currentDirection = 1;
-	float newDirectionUp = -1;
-	float newDirectionDown = 1;
+	float currentYDirection = 1;
+	float newDirectionUp = 1;
+	float newDirectionDown = -1;
+
+	float windowHeight = 720;
+	float windowWidth = 1280;
+
+	float speed = 200.f;
 };

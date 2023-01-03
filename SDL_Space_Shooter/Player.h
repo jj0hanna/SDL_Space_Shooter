@@ -21,7 +21,7 @@ struct Player
 	};
 	struct Movment
 	{
-		float forwardSpeed = 2;
+		float forwardSpeed = 200;
 		float turnSpeed = 0;
 		float angle = 0;
 		float mouseDirection = 0;
@@ -43,7 +43,7 @@ struct Player
 	bool Input(SDL_Event event);
 	void MouseMovment(SDL_Event event);
 	void MouseInput(SDL_Event event);
-	void PlayerMovment();
+	void PlayerMovment(float deltaTime);
 	void RotatePlayer();
 	float GetMouseDirection(float p1, float p2);
 	Player();

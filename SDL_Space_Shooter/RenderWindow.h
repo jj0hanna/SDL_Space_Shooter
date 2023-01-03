@@ -10,6 +10,7 @@
 using namespace std;
 class RenderWindow
 {
+
 public:
 	RenderWindow(const char* title, int width, int hight);
 	//void render(vector<Enemy*>* Objects);

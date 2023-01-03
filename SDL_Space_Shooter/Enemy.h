@@ -18,7 +18,8 @@ struct Position
 struct Movment
 {
     float speed;
-    float direction;
+    float yDirection;
+	float xDirection;
 };
 struct Body
 {

@@ -100,25 +100,25 @@ void Player::MouseInput(SDL_Event event)
 	}
 }
 
-void Player::PlayerMovment()
+void Player::PlayerMovment(float deltaTime)
 {
 
 	if (this->movement->right)
 	{
-		this->body->rect.x += this->movement->forwardSpeed;
+		this->body->rect.x += this->movement->forwardSpeed * deltaTime;
 		
 	}
 	if (this->movement->left)
 	{
-		this->body->rect.x -= this->movement->forwardSpeed;
+		this->body->rect.x -= this->movement->forwardSpeed * deltaTime;
 	}
 	if (this->movement->forward)
 	{
-		this->body->rect.y -= this->movement->forwardSpeed;
+		this->body->rect.y -= this->movement->forwardSpeed * deltaTime;
 	}
 	if (this->movement->back)
 	{
-		this->body->rect.y += this->movement->forwardSpeed;
+		this->body->rect.y += this->movement->forwardSpeed * deltaTime;
 	}
 
 }

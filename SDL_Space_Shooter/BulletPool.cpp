@@ -45,7 +45,7 @@ void BulletPool::GetBullet()
 	std::cout << "IsActiveBulletsList size: " << IsActiveBulletsList.size() << std::endl;
 }
 
-void BulletPool::UpdateBullets( )
+void BulletPool::UpdateBullets(float deltaTime)
 {
 	SDL_FRect* B = new SDL_FRect;
 
@@ -54,7 +54,7 @@ void BulletPool::UpdateBullets( )
 		for (int i = 0; i < IsActiveBulletsList.size(); i++)
 		{
 			B = IsActiveBulletsList[i];
-			B->y -= 2.f; // bullet speed and direction
+			B->y -= 2.f * bulletSpeed * deltaTime; // bullet speed and direction
 			
 			if (B->y == 0)
 			{

@@ -10,6 +10,9 @@
 
 class Game
 {
+#define WIDTH 1280
+#define HEIGHT 720
+
 public:
 	Game();
 	~Game();
@@ -42,8 +45,16 @@ private:
 	
 	
 	float spawnTimer = 0.0;
-	float spawnDelay = 10.0f; // 100 = 2sec fix this
+	float spawnDelay = 800.0f; // 100 = 2sec fix this
 	bool spawnedFinished = false;
+
+	// test deltatime
+	float deltaTimeTest;
+	Uint64 prevTicks;
+	void CalcFrameRate();
+
+	Timer* timer2;
+	float deltaTimeTest2 = 0.0;
 
 	//Window
 	int windowHight = 720;

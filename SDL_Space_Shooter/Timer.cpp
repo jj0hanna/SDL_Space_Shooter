@@ -24,7 +24,7 @@ Timer::Timer()
 		std::cout << "ERROR" << SDL_GetError << std::endl;
 	}
 	Reset();
-	timeScale = 1.0f;
+	//timeScale = 1.0f;
 	elapsedTicks = 0;
 	deltaTime = 0.0f;
 }
@@ -35,11 +35,11 @@ Timer::~Timer()
 
 void Timer::Reset()
 {
-	startTicks = SDL_GetTicks();
+	prevTicksTest = SDL_GetPerformanceCounter();
 
 }
 
-float Timer::DeltaTime()
+float Timer::GetDeltaTime()
 {
 	return deltaTime;
 }
@@ -56,18 +56,24 @@ float Timer::TimeScale()
 
 void Timer::Update()
 {
-	elapsedTicks = SDL_GetTicks() - startTicks;
-	//deltaTime = elapsedTicks * 0.001f;
+	// elapesTicks = prevtics
 
-	deltaTime = elapsedTicks * FRAME_PER_SEACOND;
+	////elapsedTicks = SDL_GetPerformanceCounter() - prevTicksTest;
+	//deltaTime = elapsedTicks * 0.001f;
+	Uint64 ticks = SDL_GetPerformanceCounter();
+	deltaTime = (float)(ticks - prevTicksTest) / SDL_GetPerformanceFrequency();
+	////deltaTime = elapsedTicks * FRAME_PER_SEACOND;
 	if (deltaTime > MAX_DELTA_TIME)
 	{
 		deltaTime = MAX_DELTA_TIME;
 	}
-
+	//
 	//SDL_Delay(floor(16.666f - elapsedTicks)); // is this two the same? cap the fps to 60. Is this right?
-	//std::cout << "Current FPS: " << floor(16.666f - elapsedTicks) << std::endl;
-	SDL_Delay(FRAME_DELAY);
+	//SDL_Delay(FRAME_DELAY); // shuóuld have or not?
+	// 
+	//std::cout << "Current FPS: " << floor(16.666f - deltaTime) << std::endl;
+	prevTicksTest = ticks;
+	
 	
 }
 

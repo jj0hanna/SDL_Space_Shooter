@@ -12,7 +12,6 @@ EnemyPooling::EnemyPooling()
 	srand(time(NULL));
 	//VPositionList = new vector<Position>(); // heap
 	
-	
 }
 
 EnemyPooling::~EnemyPooling(){}
@@ -83,41 +82,70 @@ void EnemyPooling::ReturnEnemy(Enemy* enemy)
 	std::cout << "VFreeList size:" << VFreeList.size() << std::endl;
 }
 
-void EnemyPooling::UpdateEnemies()
+void EnemyPooling::UpdateEnemies(float deltaTime)
 {
+	//int WindowW;
+	//int WindowH;
+	//auto renderWindow = Game::getInstance().gamewindow;
+	//SDL_GetWindowSize(renderWindow->window, &WindowW, &WindowH); // can i do this in a other way? im doing this in this script and in game.cpp, spawn enemies()
+	//std::cout << "WindowW :" << WindowW << std::endl;
+	//std::cout << "WindowH :" << WindowH << std::endl;
+	
+	//Body* EnemyBody = new Body;
+	//if (VIsActiveList.size() > 0)
+	//{
+	//	for (int i = 0; i < VBodyList.size(); i++)
+	//	{
+	//		EnemyBody = VBodyList[i];
+	//		EnemyBody->rect.y -= 2.f;
+	//		std::cout << "EnemyBody->rect.y: " << EnemyBody->rect.y << std::endl;
+	//		if (EnemyBody->rect.y <= 0) // funkar inte
+	//		{
+	//			
+	//	
+	//		}
+	//	
+	//	}
+	//
+	//}
+
 
 	for (int i = 0; i < VIsActiveList.size(); i++)
 	{
-	
-		if (currentDirection > 0 )
+		VBodyList[i]->rect.y += VIsActiveList[i]->movement->yDirection * speed * deltaTime;
+		VBodyList[i]->rect.x += VIsActiveList[i]->movement->xDirection * speed * deltaTime;
+
+		if (VBodyList[i]->rect.y < -130)
 		{
-			
-			//std::cout << "Going down" << std::endl;
-			
-			VBodyList[i]->rect.y += newDirectionDown;
-			
-			if (VBodyList[i]->rect.y >= 600.f)
-			{
-				currentDirection = newDirectionUp;
-			}
-			
+			//std::cout << " body y is less then 0: " << std::endl;
+			VIsActiveList[i]->movement->yDirection = 1;
 		}
-		if (currentDirection < 0)
+		if (VBodyList[i]->rect.y > windowHeight + 130)
 		{
-			//std::cout << "Going up" << std::endl;
-			if (VBodyList[i]->rect.y > 1.f)
-			{
-				VBodyList[i]->rect.y += newDirectionUp;
-			}
-			else
-			{
-				currentDirection = newDirectionDown;
-			}
-			
+			//std::cout << " body y is bigger then window height: " << std::endl;
+			VIsActiveList[i]->movement->yDirection = -1;
 		}
-		
+		if (VBodyList[i]->rect.x < -130)
+		{
+			//std::cout << " body x is less then 0: " << std::endl;
+			VIsActiveList[i]->movement->xDirection = 1;
+		}
+		if (VBodyList[i]->rect.x > windowWidth+130)
+		{
+			//std::cout << " body x is more then windowWidth: " << std::endl;
+			VIsActiveList[i]->movement->xDirection = -1;
+		}
+		//std::cout << "VBodyList[i]->rect.y : " << VBodyList[i]->rect.y << std::endl;
+		//std::cout << "VBodyList[i]->rect.x : " << VBodyList[i]->rect.x << std::endl;
+		//std::cout << "windowHeight : " << windowHeight << std::endl; 720
+		//std::cout << "windowWidth : " << windowWidth << std::endl; 1280
 	}
-	
+}
+
+void EnemyPooling::GetWindowSize(float height, float width)
+{
+	windowHeight = height;
+	windowWidth = width;
 }
 
 

@@ -11,7 +11,7 @@
 Game::Game()
 {
 	
-	gamewindow = new RenderWindow("Game", windowWidth, windowHight); // render the window from the create window scrip
+	gamewindow = new RenderWindow("Game", WIDTH, HEIGHT); // render the window from the create window scrip
 	enemyPool = new EnemyPooling(); // create enemies from enemy pool script
 	bulletpool = new BulletPool();
 	player = new Player();
@@ -19,6 +19,10 @@ Game::Game()
 	gameIsRunning = false;
 
 	timer = Timer::Instance();
+
+	// test for deltatime
+	prevTicks = SDL_GetPerformanceCounter();
+	deltaTimeTest = 0.0f;
 }
 
 Game::~Game(){
@@ -31,6 +35,7 @@ void Game::StartGame()
 	gameIsRunning = true;
 	while (gameIsRunning)
 	{
+		CalcFrameRate();
 		timer->Update();
 		EventHandler();
 		Update();
@@ -54,6 +59,20 @@ void Game::EventHandler()
 
 	while (SDL_PollEvent(&event))
 	{
+		if (event.type == SDL_WINDOWEVENT)
+		{
+			switch (event.window.event)
+			{
+			case SDL_WINDOWEVENT_SIZE_CHANGED:
+				std::cout << " Window is changed" << std::endl;
+				enemyPool->GetWindowSize(event.window.data1, event.window.data2);
+				//SDL_Log("Window %d resized to %dx%d",
+				//	event.window.windowID, event.window.data1,
+				//	event.window.data2);
+			default:
+				break;
+			}
+		}
 
 		switch (event.type)
 		{
@@ -83,7 +102,6 @@ void Game::EventHandler()
 		case SDL_MOUSEBUTTONUP:
 			player->shooting = false;
 			break;
-
 		default:
 			break;
 		}
@@ -99,26 +117,21 @@ void Game::Render()
 
 void Game::Update()
 {
-	bulletpool->UpdateBullets();
-	//enemyPool->UpdateEnemies();
-	player->PlayerMovment();
+	
+	//float deltaTime = timer->GetDeltaTime(); why cant i use my timer function?
+	bulletpool->UpdateBullets(deltaTimeTest);
+	enemyPool->UpdateEnemies(deltaTimeTest);
+	player->PlayerMovment(deltaTimeTest);
 	CheckCollision();
 
-	spawnTimer += timer->DeltaTime();
+	spawnTimer += timer->GetDeltaTime();
 	if (spawnTimer >= spawnDelay)
 	{
-		SpawnEnemies(2); // fix bug (if i dont spawn all of the enemies in the free list)
-		std::cout << " 6 sec has passed" << std::endl;
+		SpawnEnemies(10); // fix so they dont spawn on eachother
 		spawnTimer = 0;
 	}
 	timer->Reset();
-	//spawnTimer += timer->DeltaTime();
-	//if (spawnTimer >= spawnDelay)
-	//{
-	//	std::cout << " 5 sec has passed" << std::endl;
-	//	spawnTimer = 0;
-	//	
-	//}
+
 	//player->RotatePlayer();
 	
 }
@@ -143,25 +156,35 @@ void Game::SpawnEnemies(int amount)
 
 	for (int i = 0; i < amountEnemiesThatSpawned; i++)
 	{
-		randomNr = 1 + rand() % 3;
+		randomNr = 1 + rand() % 2;
 
 		switch (randomNr)
 		{
 		case 1:
 			// Get the edge of the Left side of the window
 			E[i]->body->rect.x = 0.f; // fix this number so they spawn outside the window
-			E[i]->body->rect.y = rand() % WindowH - 300;
+			E[i]->body->rect.y = rand() % WindowH;
+			E[i]->movement->yDirection = 1.0f;
+			E[i]->movement->xDirection = 1.0f;
+			
+			std::cout << "Enemy X: " << E[i]->body->rect.x << std::endl;
+			std::cout << "Enemy Y: " << E[i]->body->rect.y << std::endl;
 			break;
 		case 2:
 			// Get the edge of the right of the window 
 			E[i]->body->rect.x = WindowW - r; 
-			E[i]->body->rect.y = rand() % WindowH - 300;
+			E[i]->body->rect.y = rand() % WindowH;
+			E[i]->movement->yDirection = -1.0f;
+			E[i]->movement->xDirection = -1.0f;
+			
+			std::cout << "Enemy X: " << E[i]->body->rect.x << std::endl;
+			std::cout << "Enemy Y: " << E[i]->body->rect.y << std::endl;
 			break;
-		case 3:
-			// Get the edge of the top of the window 
-			E[i]->body->rect.x = rand() % WindowW;
-		    E[i]->body->rect.y = 0.f;
-			break;
+		//case 3:
+		//	// Get the edge of the top of the window 
+		//	E[i]->body->rect.x = rand() % WindowW;
+		//    E[i]->body->rect.y = 0.f;
+		//	break;
 		default:
 			break;
 		};
@@ -222,6 +245,15 @@ void Game::CheckCollision()
 		}
 	}
 
+}
+
+void Game::CalcFrameRate()
+{
+	Uint64 ticks = SDL_GetPerformanceCounter();
+
+	deltaTimeTest = (float)(ticks - prevTicks) / SDL_GetPerformanceFrequency();
+
+	prevTicks = ticks;
 }
 
 

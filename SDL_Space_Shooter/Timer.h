@@ -14,7 +14,7 @@ public:
 
 	void Reset();
 
-	float DeltaTime();
+	float GetDeltaTime();
 	void TimeScale(float t);
 	float TimeScale();
 	void Update();
@@ -36,7 +36,7 @@ private:
 
 	static Timer* tInstance;
 
-	int startTicks;
+	int prevTicksTest;
 	int elapsedTicks;
 
 	float deltaTime;
