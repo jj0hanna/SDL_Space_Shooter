@@ -36,7 +36,11 @@ bool Player::Input(SDL_Event event)
 			//std::cout << "S KEY PRESSED" << std::endl;
 			this->movement->back = true;
 		}
-		
+		if (scancode == SDL_SCANCODE_P)
+		{
+			//std::cout << "S KEY PRESSED" << std::endl;
+			//isDead = false;
+		}
 		if (scancode == SDL_SCANCODE_ESCAPE)
 		{
 			return false;
@@ -81,46 +85,40 @@ void Player::MouseMovment(SDL_Event event)
 
 void Player::MouseInput(SDL_Event event)
 {
-	SDL_MouseButtonEvent& b = event.button;
-	int mouseX, mouseY;
-	if (b.button == SDL_BUTTON_LEFT)
+	if (!isDead)
 	{
-	    SDL_GetMouseState(&mouseX, &mouseY);
-		
-		//std::cout << "&mouseX:" << mouseX << std::endl;
-		//std::cout << "&mouseY:" << mouseY << std::endl;
-		//std::cout << "&mouseX:" << event.button.x << std::endl;
-		//std::cout << "&mouseX:" << event.button.y << std::endl;
-		//auto direction = GetMouseDirection(mouseX, mouseY);
-		//movement->mouseDirection = direction;
-		//cout << "direction: " << direction << std::endl;
-
-
-		shooting = true;
+		SDL_MouseButtonEvent& b = event.button;
+		int mouseX, mouseY;
+		if (b.button == SDL_BUTTON_LEFT)
+		{
+			SDL_GetMouseState(&mouseX, &mouseY);
+			shooting = true;
+		}
 	}
+	
 }
 
 void Player::PlayerMovment(float deltaTime)
 {
-
-	if (this->movement->right)
+	if (!isDead)
 	{
-		this->body->rect.x += this->movement->forwardSpeed * deltaTime;
-		
+		if (this->movement->right)
+		{
+			this->body->rect.x += this->movement->forwardSpeed * deltaTime;
+		}
+		if (this->movement->left)
+		{
+			this->body->rect.x -= this->movement->forwardSpeed * deltaTime;
+		}
+		if (this->movement->forward)
+		{
+			this->body->rect.y -= this->movement->forwardSpeed * deltaTime;
+		}
+		if (this->movement->back)
+		{
+			this->body->rect.y += this->movement->forwardSpeed * deltaTime;
+		}
 	}
-	if (this->movement->left)
-	{
-		this->body->rect.x -= this->movement->forwardSpeed * deltaTime;
-	}
-	if (this->movement->forward)
-	{
-		this->body->rect.y -= this->movement->forwardSpeed * deltaTime;
-	}
-	if (this->movement->back)
-	{
-		this->body->rect.y += this->movement->forwardSpeed * deltaTime;
-	}
-
 }
 
 void Player::RotatePlayer()
@@ -160,11 +158,29 @@ float Player::GetMouseDirection(float p1, float p2)
 	return result;
 }
 
+void Player::PlayerDead(float xPos, float yPos)
+{
+	isDead = true;
+	this->body->rect.y = 400;
+	this->body->rect.x = 650;
+
+	ClearPlayerScore();
+	//this->body->rect = { xPos/2, yPos/2, 25, 50 };
+}
+
+void Player::SetPlayerScore(int score)
+{
+	playerScore += score;
+	std::cout << "playerScore: " << playerScore << std::endl;
+}
+
+void Player::ClearPlayerScore()
+{
+	playerScore = 0;
+}
+
 Player::Player()
 {
-	//position = new Position();
 	movement = new Movment();
 	body = new Body();
-
-	body->rect = { 50, 50, 25, 50 };
 }

@@ -38,6 +38,8 @@ struct Player
 
 	std::vector< SDL_Vertex > verts = { { SDL_FPoint{ 400, 150 }, SDL_Color{ 255, 0, 0, 255 }, SDL_FPoint{ 0 }, },{ SDL_FPoint{ 200, 450 }, SDL_Color{ 0, 0, 255, 255 }, SDL_FPoint{ 0 },},{ SDL_FPoint{ 600, 450 }, SDL_Color{ 0, 255, 0, 255 }, SDL_FPoint{ 0 }} };
 	bool shooting = false;
+	bool isDead = false;
+	int playerScore = 0;
 		
 	
 	bool Input(SDL_Event event);
@@ -46,7 +48,13 @@ struct Player
 	void PlayerMovment(float deltaTime);
 	void RotatePlayer();
 	float GetMouseDirection(float p1, float p2);
+	void PlayerDead(float xPos, float yPos);
+
+	void SetPlayerScore(int score);
+	void ClearPlayerScore();
+
 	Player();
+	
 
 };
 

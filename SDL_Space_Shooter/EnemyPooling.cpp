@@ -21,7 +21,7 @@ void EnemyPooling::CreateNewEnemies()
 	for (int i = 0; i < createAmount; i++)
 	{
 		VFreeList.push_back(new Enemy()); // stack?
-	
+		VFreeList[i]->setEnemySize();  //set the enemy size when we create them and never change untill we close the game
 		//VPositionList->push_back(Position());// heap
 	}
 }
@@ -54,12 +54,11 @@ int EnemyPooling::GetEnemies(Enemy** E, int amount = 1) // this sould be called 
 		VIsActiveList.push_back(E[i]);
 		VBodyList.push_back(E[i]->body);
 		
-		
 		E[i]->IsActive = true;
+		//E[i]->setEnemySize(); // set new enemy size everytime we spawn the enemies or set the size when we create them and never change ^
 		E[i]->EnemyIndex = VIsActiveList.size() - 1; // give the enemy the right index
 		VFreeList.pop_back(); // remove last enemy from the FreeList
 	}
-	std::cout << "Inside GetEnemies() ActiveList size:" << VIsActiveList.size() << std::endl;
 	return getAmount; // return how many enemies we added to the ActiveList
 }
 
@@ -68,7 +67,6 @@ void EnemyPooling::ReturnEnemy(Enemy* enemy)
 	VIsActiveList.back()->EnemyIndex = enemy->EnemyIndex; // The enemy in the back of the ActiveList will get the enemiy that got killeds index
 	std::swap(VIsActiveList[enemy->EnemyIndex], VIsActiveList.back()); // we then swap places with those two so the enemy that died is the last enemy in the list
 	std::swap(VBodyList[enemy->EnemyIndex], VBodyList.back()); // we also swap the bodies so they have the right body 
-	
 
 	VIsActiveList.pop_back(); // remove the last enemy in the activelist(the enemy that died)
 	VBodyList.pop_back(); // and remove the body
@@ -77,43 +75,32 @@ void EnemyPooling::ReturnEnemy(Enemy* enemy)
 	enemy->EnemyIndex = 0;
 	VFreeList.push_back(enemy); // add the enemy that died to the FreeList
 
-	std::cout << "VIsActiveList size:" << VIsActiveList.size() << std::endl;
-	std::cout << "VBodyList size:" << VBodyList.size() << std::endl;
-	std::cout << "VFreeList size:" << VFreeList.size() << std::endl;
+	//std::cout << "VIsActiveList size:" << VIsActiveList.size() << std::endl;
+	//std::cout << "VBodyList size:" << VBodyList.size() << std::endl;
+	//std::cout << "VFreeList size:" << VFreeList.size() << std::endl;
+}
+
+void EnemyPooling::ReturnAllEnemies()
+{
+	Enemy** enemy = new Enemy*;
+	for (int i = VIsActiveList.size() ; i >= VIsActiveList.size() -1; i--) // i = 2, i mindre 1
+	{
+		*enemy = VIsActiveList.back();
+		VFreeList.push_back(*enemy);
+		VIsActiveList.pop_back();
+		VBodyList.pop_back();
+	}
+	
+	delete enemy;
 }
 
 void EnemyPooling::UpdateEnemies(float deltaTime)
 {
-	//int WindowW;
-	//int WindowH;
-	//auto renderWindow = Game::getInstance().gamewindow;
-	//SDL_GetWindowSize(renderWindow->window, &WindowW, &WindowH); // can i do this in a other way? im doing this in this script and in game.cpp, spawn enemies()
-	//std::cout << "WindowW :" << WindowW << std::endl;
-	//std::cout << "WindowH :" << WindowH << std::endl;
 	
-	//Body* EnemyBody = new Body;
-	//if (VIsActiveList.size() > 0)
-	//{
-	//	for (int i = 0; i < VBodyList.size(); i++)
-	//	{
-	//		EnemyBody = VBodyList[i];
-	//		EnemyBody->rect.y -= 2.f;
-	//		std::cout << "EnemyBody->rect.y: " << EnemyBody->rect.y << std::endl;
-	//		if (EnemyBody->rect.y <= 0) // funkar inte
-	//		{
-	//			
-	//	
-	//		}
-	//	
-	//	}
-	//
-	//}
-
-
 	for (int i = 0; i < VIsActiveList.size(); i++)
 	{
-		VBodyList[i]->rect.y += VIsActiveList[i]->movement->yDirection * speed * deltaTime;
-		VBodyList[i]->rect.x += VIsActiveList[i]->movement->xDirection * speed * deltaTime;
+		VBodyList[i]->rect.y += VIsActiveList[i]->movement->yDirection * VIsActiveList[i]->movement->enemySpeed * deltaTime;
+		VBodyList[i]->rect.x += VIsActiveList[i]->movement->xDirection * VIsActiveList[i]->movement->enemySpeed * deltaTime;
 
 		if (VBodyList[i]->rect.y < -130)
 		{
@@ -135,10 +122,6 @@ void EnemyPooling::UpdateEnemies(float deltaTime)
 			//std::cout << " body x is more then windowWidth: " << std::endl;
 			VIsActiveList[i]->movement->xDirection = -1;
 		}
-		//std::cout << "VBodyList[i]->rect.y : " << VBodyList[i]->rect.y << std::endl;
-		//std::cout << "VBodyList[i]->rect.x : " << VBodyList[i]->rect.x << std::endl;
-		//std::cout << "windowHeight : " << windowHeight << std::endl; 720
-		//std::cout << "windowWidth : " << windowWidth << std::endl; 1280
 	}
 }
 

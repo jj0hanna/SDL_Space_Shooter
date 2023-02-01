@@ -24,6 +24,8 @@ public:
 	Game(Game const&) = delete; // makes so we cant copy objectinstance
 	void operator=(Game const&) = delete; // remove assigment operator to singelton
 
+	
+
 
 private:
 
@@ -45,7 +47,10 @@ private:
 	
 	
 	float spawnTimer = 0.0;
-	float spawnDelay = 800.0f; // 100 = 2sec fix this
+	float firstSpawnDelay = 2000.0f;
+	float spawnDelay = 5000.0f; // 100 = 2sec fix this
+
+	bool firstEnemyWaveHaveSpawned = false;
 	bool spawnedFinished = false;
 
 	// test deltatime
@@ -57,8 +62,8 @@ private:
 	float deltaTimeTest2 = 0.0;
 
 	//Window
-	int windowHight = 720;
-	int windowWidth = 1280;
+	int windowHight = HEIGHT;
+	int windowWidth = WIDTH;
 
 	//int windowW;
 	//int windowH;
@@ -66,7 +71,7 @@ private:
 	//int windowL;
 	//int windowB;
 	//int windowR;
-
+	int playerScore = 0;
 	//For collision, not pretty..
 	int enemyL;
 	int enemyR;

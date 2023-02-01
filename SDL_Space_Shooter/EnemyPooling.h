@@ -21,6 +21,7 @@ public:
 
 	int GetEnemies(Enemy** E, int amount);
 	void ReturnEnemy(Enemy* enemy);
+	void ReturnAllEnemies();
 
 	void UpdateEnemies(float deltaTime);
 
@@ -34,12 +35,9 @@ private:
 	float createAmount = 100;
 	SDL_Renderer* renderer;
 
-	float currentYDirection = 1;
-	float newDirectionUp = 1;
-	float newDirectionDown = -1;
-
 	float windowHeight = 720;
 	float windowWidth = 1280;
 
-	float speed = 200.f;
+	int minSpeed = 50.f;
+	int maxSpeed = 200.f;
 };

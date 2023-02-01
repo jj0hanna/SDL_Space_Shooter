@@ -1,26 +1,24 @@
-﻿  BulletPool.cpp
-  Game.cpp
-C:\Projects\SDLProjects\SDL_Space_Shooter\SDL_Space_Shooter\Game.cpp(68,62): warning C4244: 'argument': conversion from 'Sint32' to 'float', possible loss of data
-C:\Projects\SDLProjects\SDL_Space_Shooter\SDL_Space_Shooter\Game.cpp(68,42): warning C4244: 'argument': conversion from 'Sint32' to 'float', possible loss of data
-C:\Projects\SDLProjects\SDL_Space_Shooter\SDL_Space_Shooter\Game.cpp(58,6): warning C4101: 'scancode': unreferenced local variable
-C:\Projects\SDLProjects\SDL_Space_Shooter\SDL_Space_Shooter\Game.cpp(166,32): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Projects\SDLProjects\SDL_Space_Shooter\SDL_Space_Shooter\Game.cpp(175,33): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Projects\SDLProjects\SDL_Space_Shooter\SDL_Space_Shooter\Game.cpp(176,32): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Projects\SDLProjects\SDL_Space_Shooter\SDL_Space_Shooter\Game.cpp(211,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Projects\SDLProjects\SDL_Space_Shooter\SDL_Space_Shooter\Game.cpp(212,33): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Projects\SDLProjects\SDL_Space_Shooter\SDL_Space_Shooter\Game.cpp(213,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Projects\SDLProjects\SDL_Space_Shooter\SDL_Space_Shooter\Game.cpp(214,33): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Projects\SDLProjects\SDL_Space_Shooter\SDL_Space_Shooter\Game.cpp(218,28): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Projects\SDLProjects\SDL_Space_Shooter\SDL_Space_Shooter\Game.cpp(219,31): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Projects\SDLProjects\SDL_Space_Shooter\SDL_Space_Shooter\Game.cpp(220,28): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Projects\SDLProjects\SDL_Space_Shooter\SDL_Space_Shooter\Game.cpp(221,31): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Projects\SDLProjects\SDL_Space_Shooter\SDL_Space_Shooter\Game.cpp(224,48): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Projects\SDLProjects\SDL_Space_Shooter\SDL_Space_Shooter\Game.cpp(225,52): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Projects\SDLProjects\SDL_Space_Shooter\SDL_Space_Shooter\Game.cpp(226,48): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Projects\SDLProjects\SDL_Space_Shooter\SDL_Space_Shooter\Game.cpp(227,52): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-  Player.cpp
-C:\Projects\SDLProjects\SDL_Space_Shooter\SDL_Space_Shooter\Player.cpp(151,49): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-  Source.cpp
-  Generating Code...
-C:\Projects\SDLProjects\SDL_Space_Shooter\SDL_Space_Shooter\Player.cpp(72): warning C4715: 'Player::Input': not all control paths return a value
+﻿  Game.cpp
+C:\Projects\SDLProjects\SDL_Space_Shooter\SDL_Space_Shooter\EnemyPooling.h(41,17): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Projects\SDLProjects\SDL_Space_Shooter\SDL_Space_Shooter\EnemyPooling.h(42,17): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Projects\SDLProjects\SDL_Space_Shooter\SDL_Space_Shooter\Game.cpp(73,62): warning C4244: 'argument': conversion from 'Sint32' to 'float', possible loss of data
+C:\Projects\SDLProjects\SDL_Space_Shooter\SDL_Space_Shooter\Game.cpp(73,42): warning C4244: 'argument': conversion from 'Sint32' to 'float', possible loss of data
+C:\Projects\SDLProjects\SDL_Space_Shooter\SDL_Space_Shooter\Game.cpp(60,6): warning C4101: 'scancode': unreferenced local variable
+C:\Projects\SDLProjects\SDL_Space_Shooter\SDL_Space_Shooter\Game.cpp(183,32): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Projects\SDLProjects\SDL_Space_Shooter\SDL_Space_Shooter\Game.cpp(192,33): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Projects\SDLProjects\SDL_Space_Shooter\SDL_Space_Shooter\Game.cpp(193,32): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Projects\SDLProjects\SDL_Space_Shooter\SDL_Space_Shooter\Game.cpp(228,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Projects\SDLProjects\SDL_Space_Shooter\SDL_Space_Shooter\Game.cpp(229,33): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Projects\SDLProjects\SDL_Space_Shooter\SDL_Space_Shooter\Game.cpp(230,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Projects\SDLProjects\SDL_Space_Shooter\SDL_Space_Shooter\Game.cpp(231,33): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Projects\SDLProjects\SDL_Space_Shooter\SDL_Space_Shooter\Game.cpp(235,28): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Projects\SDLProjects\SDL_Space_Shooter\SDL_Space_Shooter\Game.cpp(236,31): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Projects\SDLProjects\SDL_Space_Shooter\SDL_Space_Shooter\Game.cpp(237,28): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Projects\SDLProjects\SDL_Space_Shooter\SDL_Space_Shooter\Game.cpp(238,31): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Projects\SDLProjects\SDL_Space_Shooter\SDL_Space_Shooter\Game.cpp(241,48): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Projects\SDLProjects\SDL_Space_Shooter\SDL_Space_Shooter\Game.cpp(242,52): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Projects\SDLProjects\SDL_Space_Shooter\SDL_Space_Shooter\Game.cpp(243,48): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Projects\SDLProjects\SDL_Space_Shooter\SDL_Space_Shooter\Game.cpp(244,52): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Projects\SDLProjects\SDL_Space_Shooter\SDL_Space_Shooter\Game.cpp(261,36): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Projects\SDLProjects\SDL_Space_Shooter\SDL_Space_Shooter\Game.cpp(261,23): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
   SDL_Space_Shooter.vcxproj -> C:\Projects\SDLProjects\SDL_Space_Shooter\x64\Debug\SDL_Space_Shooter.exe

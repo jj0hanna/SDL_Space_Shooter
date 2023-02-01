@@ -17,7 +17,9 @@ struct Position
 };
 struct Movment
 {
-    float speed;
+    float minSpeed;
+	float maxSpeed;
+	float enemySpeed;
     float yDirection;
 	float xDirection;
 };
@@ -38,11 +40,13 @@ struct Enemy // if i put all the stucts inside this struct then i cant create my
 
 	bool IsActive = false;
 	
-	Position* position;
+	//Position* position;
 	Movment* movement;
 	Body* body;
 
+	float prevRectSize = 0.f;
 	int EnemyIndex = 0;
+	void setEnemySize();
 	Enemy();
 
 };

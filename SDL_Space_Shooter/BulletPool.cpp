@@ -41,8 +41,8 @@ void BulletPool::GetBullet()
 
 	FreeBulletsList.pop_back();  // remove bullet from the freelist
 
-	std::cout << "FreeBulletsList size: " << FreeBulletsList.size() << std::endl;
-	std::cout << "IsActiveBulletsList size: " << IsActiveBulletsList.size() << std::endl;
+	//std::cout << "FreeBulletsList size: " << FreeBulletsList.size() << std::endl;
+	//std::cout << "IsActiveBulletsList size: " << IsActiveBulletsList.size() << std::endl;
 }
 
 void BulletPool::UpdateBullets(float deltaTime)
