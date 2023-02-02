@@ -6,6 +6,6 @@ Use WASD for movment and shoot with the mouse.
 -------------------------------------------------------------------------------------------------------------
 To make this project in a data oriented way i decided to create objectpoolings and to split the enemy and the
 player script in stucts "Movment" and "Body". In this way i could start the game with creating
-the bullets and the enemies and easy use them when needed. And i could manipulate ether
-only the body or the movment of the player or an enemy.
+the bullets and the enemies and easy use them when needed. And i could manipulate either
+only the body or the movment.
  
