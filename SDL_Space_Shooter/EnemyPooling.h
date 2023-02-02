@@ -12,16 +12,14 @@ public:
 	EnemyPooling();
 	~EnemyPooling();
 	
-	vector<Enemy*> VIsActiveList; // vector better then list?
-	vector<Enemy*> VFreeList; // stack allocarad, listaq av pointers
-
+	vector<Enemy*> VIsActiveList;
+	vector<Enemy*> VFreeList;
 	
 	vector<Body*> VBodyList;
-	//vector<Position*> VPositionList; // // or vector<Position>* VPositionList; // heap allocerad lista av Positions
 
 	int GetEnemies(Enemy** E, int amount);
-	void ReturnEnemy(Enemy* enemy);
-	void ReturnAllEnemies();
+	void ReturnEnemyToFreeList(Enemy* enemy);
+	void ReturnAllEnemiesToFreeList();
 
 	void UpdateEnemies(float deltaTime);
 

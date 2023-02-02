@@ -13,20 +13,16 @@ class RenderWindow
 
 public:
 	RenderWindow(const char* title, int width, int hight);
-	//void render(vector<Enemy*>* Objects);
 
 	void render3(vector<Enemy*>* Objects, vector<SDL_FRect*>* BulletRects, Player player);
 	
 	void cleanUp();
-	void clear();
-	void display();
-	//~RenderWindow();
-	SDL_Window* window; // fix get function for this
+	
+	SDL_Window* window;
 
 private:
 	
 	SDL_Renderer* renderer;
-
 	bool fullscreen;
 };
 

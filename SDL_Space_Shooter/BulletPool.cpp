@@ -12,7 +12,6 @@ BulletPool::BulletPool()
 	{
 		CreateBulletBodies();
 	}
-	
 }
 
 void BulletPool::CreateBulletBodies()
@@ -34,15 +33,11 @@ void BulletPool::GetBullet()
 		}
 		
 	}
-
 	SDL_FRect* bulletFRect = new SDL_FRect;
 	bulletFRect = FreeBulletsList.back(); // bulletFRectis the last bullet in the freeList
 	IsActiveBulletsList.push_back(bulletFRect); // add bullet to the activelist
 
 	FreeBulletsList.pop_back();  // remove bullet from the freelist
-
-	//std::cout << "FreeBulletsList size: " << FreeBulletsList.size() << std::endl;
-	//std::cout << "IsActiveBulletsList size: " << IsActiveBulletsList.size() << std::endl;
 }
 
 void BulletPool::UpdateBullets(float deltaTime)
@@ -59,7 +54,6 @@ void BulletPool::UpdateBullets(float deltaTime)
 			if (B->y == 0)
 			{
 			 ReturnBullet(B, i);
-			 //delete B; when?
 			}
 		}
 		

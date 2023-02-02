@@ -10,17 +10,15 @@
 
 Game::Game()
 {
-	
 	gamewindow = new RenderWindow("Game", WIDTH, HEIGHT); // render the window from the create window scrip
 	enemyPool = new EnemyPooling(); // create enemies from enemy pool script
-	bulletpool = new BulletPool();
+	bulletpool = new BulletPool(); // create bulets from bullet pool script
 	player = new Player();
 
 	gameIsRunning = false;
 
 	timer = Timer::Instance();
 
-	// test for deltatime
 	prevTicks = SDL_GetPerformanceCounter();
 	deltaTimeTest = 0.0f;
 }
@@ -71,9 +69,6 @@ void Game::EventHandler()
 				windowWidth = event.window.data2;
 				
 				enemyPool->GetWindowSize(event.window.data1, event.window.data2);
-				//SDL_Log("Window %d resized to %dx%d",
-				//	event.window.windowID, event.window.data1,
-				//	event.window.data2);
 			default:
 				break;
 			}
@@ -93,10 +88,6 @@ void Game::EventHandler()
 		case SDL_KEYUP:
 			player->Input(event);
 			break;
-
-		case SDL_MOUSEMOTION:
-			player->MouseMovment(event);
-			break;
 		case SDL_MOUSEBUTTONDOWN:
 			player->MouseInput(event);
 			if (player->shooting)
@@ -110,9 +101,7 @@ void Game::EventHandler()
 		default:
 			break;
 		}
-
 	}
-	
 }
 
 void Game::Render()
@@ -122,8 +111,6 @@ void Game::Render()
 
 void Game::Update()
 {
-	
-	//float deltaTime = timer->GetDeltaTime(); why cant i use my timer function?
 	bulletpool->UpdateBullets(deltaTimeTest);
 	enemyPool->UpdateEnemies(deltaTimeTest);
 	player->PlayerMovment(deltaTimeTest);
@@ -132,8 +119,7 @@ void Game::Update()
 	spawnTimer += timer->GetDeltaTime();
 	if (spawnTimer >= spawnDelay && !player->isDead && firstEnemyWaveHaveSpawned) // one spawndelay for when the game is ungoing and the first wave have spawned already
 	{
-		std::cout << "spawnDelay: " << spawnDelay << std::endl;
-		SpawnEnemies(5); // fix so they dont spawn on eachother
+		SpawnEnemies(6); // fix so they dont spawn on eachother
 		spawnTimer = 0;
 		if (spawnDelay > 500)
 		{
@@ -145,12 +131,8 @@ void Game::Update()
 		SpawnEnemies(5);
 		firstEnemyWaveHaveSpawned = true;
 		spawnTimer = 0;
-		std::cout << "Spawned first enemies: " << std::endl;
 	}
 	timer->Reset();
-
-	//player->RotatePlayer();
-	
 }
 
 void Game::SpawnEnemies(int amount)
@@ -183,9 +165,6 @@ void Game::SpawnEnemies(int amount)
 			E[i]->body->rect.y = rand() % WindowH;
 			E[i]->movement->yDirection = 1.0f;
 			E[i]->movement->xDirection = 1.0f;
-			
-			std::cout << E[i]->EnemyIndex << " : " << "Enemy X: " << E[i]->body->rect.x << std::endl;
-			std::cout << E[i]->EnemyIndex << " : " << "Enemy Y: " << E[i]->body->rect.y << std::endl;
 			break;
 		case 2:
 			// Get the edge of the right of the window 
@@ -193,24 +172,11 @@ void Game::SpawnEnemies(int amount)
 			E[i]->body->rect.y = rand() % WindowH;
 			E[i]->movement->yDirection = -1.0f;
 			E[i]->movement->xDirection = -1.0f;
-			//
-			std::cout << E[i]->EnemyIndex << " : " << "Enemy X: " << E[i]->body->rect.x << std::endl;
-			std::cout << E[i]->EnemyIndex << " : " << "Enemy Y: " << E[i]->body->rect.y << std::endl;
 			break;
-		//case 3:
-		//	// Get the edge of the top of the window 
-		//	E[i]->body->rect.x = rand() % WindowW;
-		//    E[i]->body->rect.y = 0.f;
-		//	break;
 		default:
 			break;
 		};
 	}
-	//std::cout << "End of spawn enemies!\n"; 
-	//std::cout << "End of spawn enemies, amountEnemiesThatSpawned:" << amountEnemiesThatSpawned << std::endl;
-	//std::cout << "End of spawn enemies, ActiveList size:" << enemyPool->VIsActiveList.size() << std::endl;
-	//std::cout << "End of spawn enemies, VFreeList size:" << enemyPool->VFreeList.size() << std::endl;
-
 	delete[] E; // remove to not leak
 }
 
@@ -247,7 +213,7 @@ void Game::CheckCollision()
 			}
 			else
 			{
-				enemyPool->ReturnEnemy(each);
+				enemyPool->ReturnEnemyToFreeList(each);
 				bulletpool->ReturnBullet(bulletpool->IsActiveBulletsList[i],i);
 				player->SetPlayerScore(1);
 
@@ -259,20 +225,16 @@ void Game::CheckCollision()
 		else
 		{
 			player->PlayerDead(windowWidth, windowHight);
-			enemyPool->ReturnAllEnemies();
+			enemyPool->ReturnAllEnemiesToFreeList();
 
 			// set the spawnDelay to the default value again
 			spawnDelay = 5000.f;
 
-			// fix a delay soo the player remains dead for a longer period?
 			player->isDead = false;
 			firstEnemyWaveHaveSpawned = false;
-		
-			
 			break;
 		}
 	}
-
 }
 
 void Game::CalcFrameRate()

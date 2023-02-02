@@ -6,8 +6,6 @@
 #include "Player.h"
 #include "Timer.h"
 
-//extern Enemy enemy; // sould i do extern?
-
 class Game
 {
 #define WIDTH 1280
@@ -23,9 +21,6 @@ public:
 
 	Game(Game const&) = delete; // makes so we cant copy objectinstance
 	void operator=(Game const&) = delete; // remove assigment operator to singelton
-
-	
-
 
 private:
 
@@ -44,11 +39,11 @@ private:
 	void CheckCollision();
 	
 	bool gameIsRunning;
-	
+	int playerScore = 0;
 	
 	float spawnTimer = 0.0;
-	float firstSpawnDelay = 2000.0f;
-	float spawnDelay = 5000.0f; // 100 = 2sec fix this
+	float firstSpawnDelay = 1000.0f;
+	float spawnDelay = 5000.0f;
 
 	bool firstEnemyWaveHaveSpawned = false;
 	bool spawnedFinished = false;
@@ -64,14 +59,7 @@ private:
 	//Window
 	int windowHight = HEIGHT;
 	int windowWidth = WIDTH;
-
-	//int windowW;
-	//int windowH;
-	//int windowT;
-	//int windowL;
-	//int windowB;
-	//int windowR;
-	int playerScore = 0;
+	
 	//For collision, not pretty..
 	int enemyL;
 	int enemyR;
@@ -87,7 +75,6 @@ private:
 	int playerR;
 	int playerT;
 	int playerB;
-
 };
 
 

@@ -1,24 +1,42 @@
-﻿  Game.cpp
-C:\Projects\SDLProjects\SDL_Space_Shooter\SDL_Space_Shooter\EnemyPooling.h(41,17): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\Projects\SDLProjects\SDL_Space_Shooter\SDL_Space_Shooter\EnemyPooling.h(42,17): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\Projects\SDLProjects\SDL_Space_Shooter\SDL_Space_Shooter\Game.cpp(73,62): warning C4244: 'argument': conversion from 'Sint32' to 'float', possible loss of data
-C:\Projects\SDLProjects\SDL_Space_Shooter\SDL_Space_Shooter\Game.cpp(73,42): warning C4244: 'argument': conversion from 'Sint32' to 'float', possible loss of data
-C:\Projects\SDLProjects\SDL_Space_Shooter\SDL_Space_Shooter\Game.cpp(60,6): warning C4101: 'scancode': unreferenced local variable
-C:\Projects\SDLProjects\SDL_Space_Shooter\SDL_Space_Shooter\Game.cpp(183,32): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Projects\SDLProjects\SDL_Space_Shooter\SDL_Space_Shooter\Game.cpp(192,33): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Projects\SDLProjects\SDL_Space_Shooter\SDL_Space_Shooter\Game.cpp(193,32): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Projects\SDLProjects\SDL_Space_Shooter\SDL_Space_Shooter\Game.cpp(228,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Projects\SDLProjects\SDL_Space_Shooter\SDL_Space_Shooter\Game.cpp(229,33): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Projects\SDLProjects\SDL_Space_Shooter\SDL_Space_Shooter\Game.cpp(230,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Projects\SDLProjects\SDL_Space_Shooter\SDL_Space_Shooter\Game.cpp(231,33): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Projects\SDLProjects\SDL_Space_Shooter\SDL_Space_Shooter\Game.cpp(235,28): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Projects\SDLProjects\SDL_Space_Shooter\SDL_Space_Shooter\Game.cpp(236,31): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Projects\SDLProjects\SDL_Space_Shooter\SDL_Space_Shooter\Game.cpp(237,28): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Projects\SDLProjects\SDL_Space_Shooter\SDL_Space_Shooter\Game.cpp(238,31): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Projects\SDLProjects\SDL_Space_Shooter\SDL_Space_Shooter\Game.cpp(241,48): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Projects\SDLProjects\SDL_Space_Shooter\SDL_Space_Shooter\Game.cpp(242,52): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Projects\SDLProjects\SDL_Space_Shooter\SDL_Space_Shooter\Game.cpp(243,48): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Projects\SDLProjects\SDL_Space_Shooter\SDL_Space_Shooter\Game.cpp(244,52): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Projects\SDLProjects\SDL_Space_Shooter\SDL_Space_Shooter\Game.cpp(261,36): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Projects\SDLProjects\SDL_Space_Shooter\SDL_Space_Shooter\Game.cpp(261,23): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+﻿  BulletPool.cpp
+  EnemyPooling.cpp
+C:\Projects\SDLProjects\SDL_Space_Shooter\SDL_Space_Shooter\EnemyPooling.h(39,17): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Projects\SDLProjects\SDL_Space_Shooter\SDL_Space_Shooter\EnemyPooling.h(40,17): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Projects\SDLProjects\SDL_Space_Shooter\SDL_Space_Shooter\EnemyPooling.cpp(11,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Projects\SDLProjects\SDL_Space_Shooter\SDL_Space_Shooter\EnemyPooling.cpp(35,19): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Projects\SDLProjects\SDL_Space_Shooter\SDL_Space_Shooter\EnemyPooling.cpp(53,46): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\Projects\SDLProjects\SDL_Space_Shooter\SDL_Space_Shooter\EnemyPooling.cpp(76,2): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  Game.cpp
+C:\Projects\SDLProjects\SDL_Space_Shooter\SDL_Space_Shooter\EnemyPooling.h(39,17): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Projects\SDLProjects\SDL_Space_Shooter\SDL_Space_Shooter\EnemyPooling.h(40,17): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Projects\SDLProjects\SDL_Space_Shooter\SDL_Space_Shooter\Game.cpp(71,62): warning C4244: 'argument': conversion from 'Sint32' to 'float', possible loss of data
+C:\Projects\SDLProjects\SDL_Space_Shooter\SDL_Space_Shooter\Game.cpp(71,42): warning C4244: 'argument': conversion from 'Sint32' to 'float', possible loss of data
+C:\Projects\SDLProjects\SDL_Space_Shooter\SDL_Space_Shooter\Game.cpp(58,6): warning C4101: 'scancode': unreferenced local variable
+C:\Projects\SDLProjects\SDL_Space_Shooter\SDL_Space_Shooter\Game.cpp(165,32): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Projects\SDLProjects\SDL_Space_Shooter\SDL_Space_Shooter\Game.cpp(171,33): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Projects\SDLProjects\SDL_Space_Shooter\SDL_Space_Shooter\Game.cpp(172,32): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Projects\SDLProjects\SDL_Space_Shooter\SDL_Space_Shooter\Game.cpp(194,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Projects\SDLProjects\SDL_Space_Shooter\SDL_Space_Shooter\Game.cpp(195,33): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Projects\SDLProjects\SDL_Space_Shooter\SDL_Space_Shooter\Game.cpp(196,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Projects\SDLProjects\SDL_Space_Shooter\SDL_Space_Shooter\Game.cpp(197,33): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Projects\SDLProjects\SDL_Space_Shooter\SDL_Space_Shooter\Game.cpp(201,28): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Projects\SDLProjects\SDL_Space_Shooter\SDL_Space_Shooter\Game.cpp(202,31): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Projects\SDLProjects\SDL_Space_Shooter\SDL_Space_Shooter\Game.cpp(203,28): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Projects\SDLProjects\SDL_Space_Shooter\SDL_Space_Shooter\Game.cpp(204,31): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Projects\SDLProjects\SDL_Space_Shooter\SDL_Space_Shooter\Game.cpp(207,48): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Projects\SDLProjects\SDL_Space_Shooter\SDL_Space_Shooter\Game.cpp(208,52): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Projects\SDLProjects\SDL_Space_Shooter\SDL_Space_Shooter\Game.cpp(209,48): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Projects\SDLProjects\SDL_Space_Shooter\SDL_Space_Shooter\Game.cpp(210,52): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Projects\SDLProjects\SDL_Space_Shooter\SDL_Space_Shooter\Game.cpp(227,36): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Projects\SDLProjects\SDL_Space_Shooter\SDL_Space_Shooter\Game.cpp(227,23): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  Player.cpp
+C:\Projects\SDLProjects\SDL_Space_Shooter\SDL_Space_Shooter\EnemyPooling.h(39,17): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Projects\SDLProjects\SDL_Space_Shooter\SDL_Space_Shooter\EnemyPooling.h(40,17): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Projects\SDLProjects\SDL_Space_Shooter\SDL_Space_Shooter\Player.cpp(111,49): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  RenderWindow.cpp
+  Source.cpp
+C:\Projects\SDLProjects\SDL_Space_Shooter\SDL_Space_Shooter\EnemyPooling.h(39,17): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Projects\SDLProjects\SDL_Space_Shooter\SDL_Space_Shooter\EnemyPooling.h(40,17): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+  Generating Code...
+C:\Projects\SDLProjects\SDL_Space_Shooter\SDL_Space_Shooter\Player.cpp(63): warning C4715: 'Player::Input': not all control paths return a value
   SDL_Space_Shooter.vcxproj -> C:\Projects\SDLProjects\SDL_Space_Shooter\x64\Debug\SDL_Space_Shooter.exe

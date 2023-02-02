@@ -2,19 +2,6 @@
 #include "SDL.h"
 #include "SDL_image.h"
 
-
-//struct Enemy
-//{
-//    void move(struct Position* p, int count, float move_x, float move_y);
-//    void draw(struct Body* Body);
-// 
-//};
-
-struct Position 
-{
-    float x, y;
-	
-};
 struct Movment
 {
     float minSpeed;
@@ -35,12 +22,9 @@ struct Body
 };
 
 
-struct Enemy // if i put all the stucts inside this struct then i cant create my vectors with BODY in Enemypooling.h
+struct Enemy
 {
-
 	bool IsActive = false;
-	
-	//Position* position;
 	Movment* movement;
 	Body* body;
 
@@ -48,5 +32,4 @@ struct Enemy // if i put all the stucts inside this struct then i cant create my
 	int EnemyIndex = 0;
 	void setEnemySize();
 	Enemy();
-
 };

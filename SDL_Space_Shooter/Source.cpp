@@ -9,8 +9,5 @@
 
 int main() {
 	Game::getInstance().StartGame();
-
-
-
 	return 0;
 }

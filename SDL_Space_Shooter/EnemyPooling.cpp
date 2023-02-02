@@ -8,10 +8,7 @@
 EnemyPooling::EnemyPooling()
 {
 	CreateNewEnemies();
-	std::cout << "Enemies created in constructor" << VFreeList.size() << std::endl;
 	srand(time(NULL));
-	//VPositionList = new vector<Position>(); // heap
-	
 }
 
 EnemyPooling::~EnemyPooling(){}
@@ -20,19 +17,18 @@ void EnemyPooling::CreateNewEnemies()
 {
 	for (int i = 0; i < createAmount; i++)
 	{
-		VFreeList.push_back(new Enemy()); // stack?
-		VFreeList[i]->setEnemySize();  //set the enemy size when we create them and never change untill we close the game
-		//VPositionList->push_back(Position());// heap
+		VFreeList.push_back(new Enemy());
 	}
 }
 	
-int EnemyPooling::GetEnemies(Enemy** E, int amount = 1) // this sould be called before the game starts. In source on the top? or should this be called in the contructor and the constructor get called in source?
+int EnemyPooling::GetEnemies(Enemy** E, int amount = 1)
 {
 	int getAmount = amount;
-	while (VFreeList.size() < getAmount) // create all the enemies i wanted, but not more then im allowed
+	while (VFreeList.size() < getAmount) // create all the enemies i wanted
 	{
-		CreateNewEnemies(); // create one more enemy
+		CreateNewEnemies();
 	}
+
 	if (getAmount + VIsActiveList.size() > max)
 	{
 		
@@ -42,7 +38,6 @@ int EnemyPooling::GetEnemies(Enemy** E, int amount = 1) // this sould be called 
 		{
 			std::cout << "The Active list is full" << std::endl;
 			getAmount = 0;
-			// return?
 		}
 		
 	}
@@ -55,16 +50,15 @@ int EnemyPooling::GetEnemies(Enemy** E, int amount = 1) // this sould be called 
 		VBodyList.push_back(E[i]->body);
 		
 		E[i]->IsActive = true;
-		//E[i]->setEnemySize(); // set new enemy size everytime we spawn the enemies or set the size when we create them and never change ^
 		E[i]->EnemyIndex = VIsActiveList.size() - 1; // give the enemy the right index
 		VFreeList.pop_back(); // remove last enemy from the FreeList
 	}
 	return getAmount; // return how many enemies we added to the ActiveList
 }
 
-void EnemyPooling::ReturnEnemy(Enemy* enemy)
+void EnemyPooling::ReturnEnemyToFreeList(Enemy* enemy)
 {
-	VIsActiveList.back()->EnemyIndex = enemy->EnemyIndex; // The enemy in the back of the ActiveList will get the enemiy that got killeds index
+	VIsActiveList.back()->EnemyIndex = enemy->EnemyIndex; // The enemy in the back of the ActiveList will get the enemy that got killeds index
 	std::swap(VIsActiveList[enemy->EnemyIndex], VIsActiveList.back()); // we then swap places with those two so the enemy that died is the last enemy in the list
 	std::swap(VBodyList[enemy->EnemyIndex], VBodyList.back()); // we also swap the bodies so they have the right body 
 
@@ -74,23 +68,18 @@ void EnemyPooling::ReturnEnemy(Enemy* enemy)
 	enemy->IsActive = false;
 	enemy->EnemyIndex = 0;
 	VFreeList.push_back(enemy); // add the enemy that died to the FreeList
-
-	//std::cout << "VIsActiveList size:" << VIsActiveList.size() << std::endl;
-	//std::cout << "VBodyList size:" << VBodyList.size() << std::endl;
-	//std::cout << "VFreeList size:" << VFreeList.size() << std::endl;
 }
 
-void EnemyPooling::ReturnAllEnemies()
+void EnemyPooling::ReturnAllEnemiesToFreeList()
 {
 	Enemy** enemy = new Enemy*;
-	for (int i = VIsActiveList.size() ; i >= VIsActiveList.size() -1; i--) // i = 2, i mindre 1
+	for (int i = VIsActiveList.size() ; i >= VIsActiveList.size() -1; i--)
 	{
 		*enemy = VIsActiveList.back();
 		VFreeList.push_back(*enemy);
 		VIsActiveList.pop_back();
 		VBodyList.pop_back();
 	}
-	
 	delete enemy;
 }
 
@@ -104,22 +93,18 @@ void EnemyPooling::UpdateEnemies(float deltaTime)
 
 		if (VBodyList[i]->rect.y < -130)
 		{
-			//std::cout << " body y is less then 0: " << std::endl;
 			VIsActiveList[i]->movement->yDirection = 1;
 		}
 		if (VBodyList[i]->rect.y > windowHeight + 130)
 		{
-			//std::cout << " body y is bigger then window height: " << std::endl;
 			VIsActiveList[i]->movement->yDirection = -1;
 		}
 		if (VBodyList[i]->rect.x < -130)
 		{
-			//std::cout << " body x is less then 0: " << std::endl;
 			VIsActiveList[i]->movement->xDirection = 1;
 		}
 		if (VBodyList[i]->rect.x > windowWidth+130)
 		{
-			//std::cout << " body x is more then windowWidth: " << std::endl;
 			VIsActiveList[i]->movement->xDirection = -1;
 		}
 	}
@@ -130,7 +115,3 @@ void EnemyPooling::GetWindowSize(float height, float width)
 	windowHeight = height;
 	windowWidth = width;
 }
-
-
-
-
